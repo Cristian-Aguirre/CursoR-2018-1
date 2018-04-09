@@ -1,0 +1,69 @@
+
+
+Nombres : Cristian Aguirre Janampa 20150058I
+
+Respuesta : Operaciones sobre factores en R
+
+#### Item (a)
+
+Creamos los vectores sexo y partido
+```{r}
+sexo <- as.vector(c(c("F"), rep(c("M"), 3),rep(c("F"), 3), rep(c("M"), 4), c("F", "M"), rep(c("F"), 3), rep(c("M"), 4)))
+sexo
+
+partido <- as.vector(c(c("Laborista"), rep(c("Nacional"), 2), c("Laborista", "Nacional", "Verde"), rep(c("Nacional"), 2), c("Verde", "Otro", "Verde", "Laborista"), rep(c("Nacional"), 2), rep(c("Laborista"), 2), rep(c("Nacional"), 2), c("Laborista", "Otro")))
+partido
+```
+
+#### Item (b)
+
+Creamos 2 factores para sexo y partido
+```{r}
+factor.sexo <- factor(sexo)
+factor.sexo
+
+factor.partido <- factor(partido) 
+factor.partido
+```
+En este caso no tiene sentido ordenar los nivelos de cada factor, es ilogico pensar que hombre < mujer. 
+
+R organiza los niveles por orden alfabetico, pero no los compara.
+
+#### Item (c)
+```{r}
+# Partidos solo elegidos por los hombres
+factor.partido[factor.sexo == "M"]
+
+#Muestra el genero de los que eligieron el partido Nacional
+factor.sexo[factor.partido == "Nacional"]
+
+```
+
+#### Item (d)
+
+```{r}
+factor.sexo <- factor(c(sexo, c("M", "M", "F", "F", "F", "M")))
+factor.sexo
+
+factor.partido <- factor(c(partido, c("Nacional", "Maori", "Maori", "Laborista", "Verde", "Laborista")))
+factor.partido
+
+#Creamos el factor de confianza
+
+confianza <- as.vector(c(93, 55, 29, 100, 52, 84, 56, 0, 33, 52, 35, 53, 55, 46, 40, 56, 45, 64, 31, 10, 29, 40, 95, 18, 61, 67))
+confianza[confianza < 31] = "Bajo"
+confianza[confianza > 30 & confianza < 71 & confianza != "Bajo"] = "Moderado"
+confianza[confianza > 70 & confianza != "Bajo" & confianza != "Moderado"] = "Alto"
+confianza[confianza == 100] = "Alto"
+factor.confianza <- factor(confianza, ordered = TRUE, levels = c("Bajo", "Moderado", "Alto"))
+factor.confianza
+
+#Ahora veamos la confianza por quienes siguen al partido Laborista
+factor.confianza[factor.partido == "Laborista"]
+
+#Ahora por quienes siguen a los Nacionales
+factor.confianza[factor.partido == "Nacional"]
+
+```
+
+Se nota que hay una persona que esta identificado con los Laboristas, pero tiene una confianza "Baja" de que su partido le gane a los "Nacionales", sin embargo, la mayoria de "Laboristas"" confian en que ganara su partido. Era de esperarse que los "Nacionales" tengan una confianza baja de que ganen los "Laboristas".

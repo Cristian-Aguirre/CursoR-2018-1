@@ -1,0 +1,55 @@
+
+Nombres : Cristian Aguirre Janampa 20150058I
+
+Resultado : Operaciones sobre vectores, factores y data frames
+
+#### Item (a)
+
+```{r}
+f1 <- array(data= 1:36, dim= c(3, 3, 4))
+class(f1)
+#Como podermos ver f1 es clase array, ademas que esta definida explicitamente, ya que observamos los datos que es el vector 1:36 y la dimension del array.
+bar <- as.vector(f1)
+class(bar)
+#La clase de bar es de clase entero, ya que pasamos los datos del array f1 como vector a bar. Esta declarado implicitamente por f1.
+baz <- as.character(bar)
+class(baz)
+#Aca baz esta declarado implicitamente por bar, pero los valores de baz son caracteres, ya no enteros.
+qux <- as.factor(baz)
+class(qux)
+#qux esta declarado implicitamente por baz. qux es un factor, con los valores de baz y con los niveles correspondientes.
+quux <- bar+c(-0.1, 0.1)
+class(quux)
+#quux es de clase numeric ya que realiza una operacion real sobre enteros, entonces el resultado sera de tipo real, ademas que esta declarado implicatamente por los valores de bar. 
+```
+
+
+#### Item (b)
+```{r}
+r1 <- is.numeric(f1) + is.integer(f1)
+r2 <- is.numeric(bar) + is.integer(bar)
+r3 <- is.numeric(baz) + is.integer(baz)
+r4 <- is.numeric(qux) + is.integer(qux)
+r5 <- is.numeric(quux) + is.integer(quux)
+
+factor.coleccion <- factor(c(r1, r2, r3, r4, r5), ordered = TRUE, levels = c(0, 1, 2))
+factor.coleccion
+as.numeric(factor.coleccion) #< factor.coleccion
+# Se puede observar que el vector numerico difiere en uno más que los valores del factor, esto se puede deber a que la funcion as.numeric toma el entero siguiente cuando recibe de un factor. No es recomendado llamar a la funcion as.numeric para "atrapar" numeros de un factor. 
+```
+
+#### Item (c)
+```{r}
+A <- matrix(c(34, 0, 1, 23, 1, 2, 33, 1, 1, 42, 0, 1, 41, 0, 2), byrow = TRUE, ncol = 3)
+
+#Coercemos la matriz como un dataframe
+A.dataframe <- data.frame(A)
+
+# La segunda columna lo coercemos a valores logicos
+A.dataframe$X2 <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+
+# La tercera columna lo coercemos a un valor de factor
+A.dataframe$X3 <- factor(c(1, 2, 1, 1, 2))
+A.dataframe
+
+```
