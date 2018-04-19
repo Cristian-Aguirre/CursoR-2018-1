@@ -1,0 +1,29 @@
+
+Nombres : Cristian Aguirre Janampa  20150058I
+
+Resultado : Describir las funcionalidades de un codigo dado en R
+
+### Codigo en R :
+```{r}
+
+plot.new()
+plot.window(range(pressure$temperature),
+            range(pressure$pressure))
+box()
+axis(1)
+axis(2)
+points(pressure$temperature, pressure$pressure)
+mtext("temperatura", side = 1, line = 3)
+mtext("presion", side = 2, line = 3)
+mtext("Presion de vapor de Mercurio\ncomo una funcion de la Temperatura", side = 3, line = 1, font = 2)
+```
+
+#### Item (a)
+
+Lo que hace el codigo dado esque crea un grafico, en este caso una grafica de una funcion de temperatura y presion. Primero la funcion plot.new() causa la completacion de un plot en ejecucion y comienza uno nuevo, luego plot.window crea el grafica como un sistema de coordenadas y sus parametros son los datos pressure$temperature y pressure$pressure del eje x y del eje y respectivamente. Luego box crea el grafico como si estuviera en una caja. Axis() crea los ejes X y Y. En este caso lo creamos con axis(1) y axis(2). Con points() son los puntos en el grafico que se van a dibujar, en este caso seran de los parametros pressure$temperature y pressure$pressure. Con mtext escribimos los nombres de los parametros de la funcion, side es la ubicacion del texto ingresado, line es la posicion en el lado escogido y font la fuente utilizada para el texto.
+
+#### Item (b)
+
+
+
+

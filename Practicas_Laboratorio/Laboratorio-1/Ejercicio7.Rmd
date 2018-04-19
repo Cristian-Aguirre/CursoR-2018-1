@@ -1,0 +1,56 @@
+
+Nombres : Cristian Aguirre Janampa
+
+Resultado : Operaciones sobre vectores y matrices
+
+#### Item (a)
+
+Usamos un bucle for para pasar por todos los datos de f1 y comprobar si estos no son infinitos con un if. Si no son infinitos lo imprimimos.
+```{r}
+f1 <- c(13563, -14156, -14319, 16981, 12921, 11979, 9568, 8833, -12968, 8133)
+for(i in 1:10) if(abs(f1[i]^75) != Inf) print(f1[i]^75)
+
+```
+
+Para devolver los numeros que no son infinito negativo, hacemos algo parecido al codigo anterior.
+```{r}
+for(i in 1:10) if(f1[i]^75!=-Inf) print(f1[i]^75)
+
+```
+
+#### Item (b)
+
+Definimos varMatrix como sigue y extraemos los indices donde los valores son NaN cuando elevamos a la potencia de 65 y dividimos por Infinito.
+```{r}
+varMatrix <- matrix(c(77875.40, 27551.45, 23764.30, -36478.88, -35466.25, -73333.85, 36599.69, -70585.69, -39803.81, 55976.34, 76694.82, 47032.00), nrow = 3, byrow = TRUE)
+
+
+for(i in 1:3) for(j in 1:4) if(is.nan((varMatrix[i,j]^65)/Inf)) print(c(i, j))
+
+```
+
+Ahora veamos los valores de la matrix que sean infinitos negativos o finitos al elevar la matriz a una potencia de 67. 
+```{r}
+for(i in 1:3) for(j in 1:4) if(varMatrix[i, j]^67 != Inf) print(varMatrix[i,j]^67)
+
+```
+
+#### Item (c)
+
+Sea f2 como sigue :
+```{r}
+
+# G_G
+f2 <- c(4.3, 2.2, NULL, 2.4, NaN, 3.3, 3.1, NULL, 3.4, NA)
+
+# - La longitud de f2 es 8 ---- (V)
+length(f2)  
+
+# - Llamando a which(x = is.na(x=f2)), no resultara en 4 y 8 ---- (F)
+which(x = is.na(x = f2))
+
+# - Verificando is.null(x = f2), proporciona la localizacion de 2 valores NULL presentes ---- (F)
+is.null(x = f2)
+
+```
+ 
